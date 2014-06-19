@@ -1,0 +1,56 @@
+---
+title       : Body Mass Index
+subtitle    : Developing Data Product Course Project
+author      : Alexander Korepov
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## What is BMI?
+
+The [body mass index (BMI)] (http://en.wikipedia.org/wiki/Body_mass_index) is a measure of relative weight based on an individual's mass and height.
+
+The BMI is usually used as a simple method to assess how much an individual's body weight departs from what is normal or desirable for a person of his or her height.
+
+---
+
+## Calculating BMI
+
+BMI is defined as the individual's body mass divided by the square of their height – with the value universally being given in units of kg/m2.
+
+<br>
+$$BMI = \frac{mass(kg)}{(height(m))^2}$$
+
+---
+### A graph of body mass index as a function of body mass and body height.
+```{r echo=FALSE}
+curve(sqrt(x / 18.5), 30, 140, ylim=c(1.4, 2.1), xlab='weight (kg)', ylab='height (m)', main='BMI Zones')
+curve(sqrt(x / 25), 30, 140, add=TRUE, ylim=c(1.4, 2.1))
+curve(sqrt(x / 30), 30, 140, add=TRUE, ylim=c(1.4, 2.1))
+y <- seq(1.3, 2.2, length.out = 10)
+x1 <- 18.5 * y^2
+x2 <- 25 * y ^2
+x3 <- 30 * y ^2
+x4 <- 100 * y ^2
+
+polygon(c(x1, rev(x2)), c(y, rev(y)), col='green')
+polygon(c(x2, rev(x3)), c(y, rev(y)), col='yellow')
+polygon(c(x3, rev(x4)), c(y, rev(y)), col='red')
+text(40, 1.8, 'underweight', adj=0, srt=45)
+text(70, 1.8, 'normal', adj=0, srt=45)
+text(90, 1.8, 'overweight', adj=0, srt=45)
+text(120, 1.8, 'obese', adj=0, srt=45)
+grid()
+```
+
+---
+
+## Body Mass Index Calculator
+You may use [Body Mass Index Calculator] (http://grdshch.shinyapps.io/bmic) application for convenient getting your BMI and finding out what weight you need to be in a BMI zone you desire.
+
+<img src='figure/bmi.png' width=50% style="border:2px solid black"/>
